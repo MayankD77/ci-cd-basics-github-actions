@@ -38,3 +38,5 @@ jobs:
       - name: Push image to Docker Hub
         run: docker push ${{ secrets.DOCKER_USERNAME }}/${{ env.IMAGE_NAME }}:latest
 
+      - name: Deploy the application to Render  #via Docker Hub as pulling the image and spinning on render
+        run: curl -X POST "${{ secrets.RENDER_DEPLOY_HOOK }}"  # Deploy hook:- When this hook URL receives a request, Render starts a deployment.
